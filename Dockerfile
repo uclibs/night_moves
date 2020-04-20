@@ -31,13 +31,13 @@ RUN bundle install
 RUN rails db:migrate
 
 # add dev user
-RUN adduser dev -h /home/dev/ -Ds bash -G wheel
+RUN adduser dev -h /home/dev/ -Ds /bin/bash && adduser dev wheel
 RUN echo dev:password | chpasswd
+RUN chown -R dev:dev /home/dev/
 
 USER dev
 
 EXPOSE 3000
 
-# ENTRYPOINT ["bundle", "exec"]
-
-# CMD ["rails" ,"hydra:server"]
+#Start services and rails server
+CMD ["rails", "hydra:server", "HOST=0.0.0.0"]
