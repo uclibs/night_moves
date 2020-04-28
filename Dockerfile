@@ -28,7 +28,10 @@ WORKDIR /home/dev/night_moves
 ADD . /home/dev/night_moves
 RUN gem install bundler
 RUN bundle install
+RUN rails generate roles
 RUN rails db:migrate
+RUN bundle exec rake hyrax:default_collection_types:create
+RUN rails db:seed
 
 # add dev user
 RUN adduser dev -h /home/dev/ -Ds /bin/bash && adduser dev wheel
