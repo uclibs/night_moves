@@ -17,13 +17,17 @@ Hyrax 2.6.0 based test application for UC Libraries App Dev Unit
 
 1. Wait a min or two and then visit [localhost:3000](http://localhost:3000) to access the app
 
+This should result in a sample app preconfigured default workflows, adminset and sample users (admin and regular). See the [Dockerfile](https://github.com/uclibs/night_moves/blob/master/Dockerfile) for details.
+
+### Test Users
+
+username: admin@example.com, password: 'password'
+username: test@example.com, password: 'password'
+
 ### Manage the container
 
-Stop the container
-`docker stop night_moves`
-
-Start the container
-`docker start night_moves`
+Follow the logs
+`docker logs -f night_moves`
 
 Access the shell
 `docker exec -it night_moves bash`
@@ -33,3 +37,13 @@ Access the shell as root
 
 Access the rails console
 `docker exec -it night_moves bundle exec rails c`
+
+Stop the container
+`docker stop night_moves`
+
+Start the container
+`docker start night_moves`
+
+Remove the container (must be stopped)
+`docker rm night_moves`
+*Do this to blow away a corrupted container and start from scratch by creating a new container based on image*
